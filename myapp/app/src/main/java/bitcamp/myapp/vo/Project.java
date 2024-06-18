@@ -1,6 +1,7 @@
 package bitcamp.myapp.vo;
 
 public class Project {
+
     private String title;
     private String description;
     private String startDate;
@@ -40,4 +41,32 @@ public class Project {
         this.endDate = endDate;
     }
 
+    public boolean containsMember(User user) {
+        for (int i = 0; i < memberSize; i++) {
+            User member = members[i];
+            if (member.getName().equals(user.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addMember(User user) {
+        members[memberSize++] = user;
+    }
+
+    public int countMembers() {
+        return this.memberSize;
+    }
+
+    public User getMember(int index) {
+        return members[index];
+    }
+
+    public void deleteMember(int index) {
+        for (int i = index + 1; i < memberSize; i++) {
+            members[i - 1] = members[i];
+        }
+        members[--memberSize] = null;
+    }
 }
