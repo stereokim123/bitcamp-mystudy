@@ -4,28 +4,23 @@ import java.util.Scanner;
 
 public class Practice {
     public static void main(String[] args) {
+        int count = 0;
+        int sum = 0;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("무슨 커피를 드릴까요?");
-        String order = scanner.next();
-        int price = 0;
-        switch (order) {
-            case "에스프레소":
-            case "아메리카노":
-            case "카페라떼":
-                price = 3000;
-                break;
-            case "카푸치노":
-                price = 5000;
-                break;
-            default:
-                System.out.println("메뉴에 없습니다.");
+        System.out.println("정수를 입력하고 마지막에 -1을 넣으시오");
 
+        int n = scanner.nextInt();
+        while (n != -1) {
+            sum += n;
+            count++;
 
+            n = scanner.nextInt();
         }
-        if (price != 0)
-            System.out.print(order + "는 " + price + "원입니다");
-
-
+        if (count == 0) System.out.println("입력된 수가 없습니다");
+        else {
+            System.out.print("정수의 개수는" + count + "개이며");
+            System.out.println("평균은" + (double) sum / count + "입니다.");
+        }
         scanner.close();
     }
 }
