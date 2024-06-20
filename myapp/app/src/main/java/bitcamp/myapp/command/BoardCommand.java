@@ -2,6 +2,9 @@ package bitcamp.myapp.command;
 
 import bitcamp.myapp.util.Prompt;
 import bitcamp.myapp.vo.Board;
+import bitcamp.myapp.vo.User;
+
+import java.util.Date;
 
 public class BoardCommand {
 
@@ -32,73 +35,81 @@ public class BoardCommand {
 
     private static void addBoard() {
         Board board = new Board();
-        board.setPostTitle(Prompt.input("제목?"));
-        board.setPostDescription(Prompt.input("내용?"));
-        board.setPostDate(Prompt.input("작성일?"));
-
+        board.setTitle(Prompt.input("제목?"));
+        board.setContent(Prompt.input("내용?"));
+        board.setCreatedDate(new Date());
+        board.setNo(User.getNextSeqNo());
         boards[boardLength++] = board;
-        System.out.println("등록했습니다.");
     }
 
     private static void listBoard() {
         System.out.println("번호 제목 작성일 조회수");
         for (int i = 0; i < boardLength; i++) {
             Board board = boards[i];
-            System.out.printf("%d %s %s %d\n",
-                    (i + 1), board.getPostTitle(), board.getPostDate(), board.getPostViews());
+            System.out.printf("%d %s %tY-%3$tm-%3$td %d\n",
+                    (i + 1), board.getTitle(), board.getCreatedDate(), board.getViewCount());
         }
-
-
     }
 
     private static void viewBoard() {
         int boardNo = Prompt.inputInt("게시글 번호?");
-        if (boardNo < 1 || boardNo > boardLength) {
+        Board board = findByNo(boardNo);
+        if (board == null) {
             System.out.println("없는 게시글입니다.");
             return;
         }
-        Board board = boards[boardNo - 1];
-        System.out.printf("제목: %s\n", board.getPostTitle());
-        System.out.printf("내용: %s\n", board.getPostDescription());
-        System.out.printf("작성일: %s\n", board.getPostDate());
-        System.out.printf("조회수: %s\n", board.getPostViews());
-        board.increasePostViews();
-
-
+        board.setViewCount(board.getViewCount() + 1);
+        System.out.printf("제목: %s\n", board.getTitle());
+        System.out.printf("내용: %s\n", board.getContent());
+        System.out.printf("작성일: %1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS\n", board.getCreatedDate());
+        System.out.printf("조회수: %d\n", board.getViewCount());
     }
-
 
     private static void updateBoard() {
         int boardNo = Prompt.inputInt("게시글 번호?");
-        if (boardNo < 1 || boardNo > boardLength) {
+        Board board = findByNo(boardNo);
+        if (board == null) {
             System.out.println("없는 게시글입니다.");
             return;
         }
-        Board board = boards[boardNo - 1];
-        board.setPostTitle(Prompt.input("제목(%s)?", board.getPostTitle()));
-        board.setPostDate(Prompt.input("내용(%s)?", board.getPostDescription()));
-
+        board.setViewCount(board.getViewCount() + 1);
+        board.setTitle(Prompt.input("제목(%s)?", board.getTitle()));
+        board.setContent(Prompt.input("내용(%s)?", board.getContent()));
         System.out.println("변경 했습니다.");
     }
 
     private static void deleteBoard() {
-
         int boardNo = Prompt.inputInt("게시글 번호?");
-        if (boardNo < 1 || boardNo > boardLength) {
-            System.out.println("없는 게시글입니다.");
+        Board board = findByNo(boardNo);
+        if (board == null) {
+            System.out.println("없는 회원입니다.");
             return;
         }
-        for (int i = boardNo; i < boardLength; i++) {
+        int index = indexOf(board);
+        for (int i = index + 1; i < boardLength; i++) {
             boards[i - 1] = boards[i];
         }
         boards[--boardLength] = null;
         System.out.println("삭제 했습니다.");
-
     }
 
+    public static Board findByNo(int boardNo) {
+        for (int i = 0; i < boardLength; i++) {
+            Board board = boards[i];
+            if (board.getNo() == boardNo) {
+                return board;
+            }
+        }
+        return null;
+    }
+
+    public static int indexOf(Board board) {
+        for (int i = 0; i < boardLength; i++) {
+            if (boards[i] == board) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
 }
-
-
-
-

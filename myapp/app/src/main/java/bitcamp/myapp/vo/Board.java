@@ -1,41 +1,61 @@
 package bitcamp.myapp.vo;
 
+import java.util.Date;
+
 public class Board {
 
-    private String postTitle;
-    private String postDescription;
-    private String postDate;
-    private int postViews; // 조회수 필드 추가
+    private static int seqNo;
+    private int no;
+    private String title;
+    private String content;
+    private Date createdDate;
+    private int viewCount;
 
-    public String getPostTitle() {
-        return postTitle;
+    public static int getSeqNo() {
+        return seqNo;
     }
 
-    public void setPostTitle(String postTitle) {
-        this.postTitle = postTitle;
+    public static void setSeqNo(int seqNo) {
+        Board.seqNo = seqNo;
     }
 
-    public String getPostDescription() {
-        return postDescription;
+    public int getNo() {
+        return no;
     }
 
-    public void setPostDescription(String postDescription) {
-        this.postDescription = postDescription;
+    public void setNo(int no) {
+        this.no = no;
     }
 
-    public String getPostDate() {
-        return postDate;
+    public String getTitle() {
+        return title;
     }
 
-    public void setPostDate(String postDate) {
-        this.postDate = postDate;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public int getPostViews() {
-        return postViews;
+    public String getContent() {
+        return content;
     }
 
-    public void increasePostViews() {
-        this.postViews++;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public int getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
     }
 }
