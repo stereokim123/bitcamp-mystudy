@@ -20,7 +20,7 @@ public class ProjectCommand {
                 break;
             }
 
-            User user = this.userList.findByNo(userNo);
+            User user = userList.findByNo(userNo);
             if (user == null) {
                 System.out.println("없는 팀원입니다.");
                 continue;
@@ -82,14 +82,15 @@ public class ProjectCommand {
 
         project.setNo(Project.getNextSeqNo());
 
-        this.projectList.add(project);
+        projectList.add(project);
 
         System.out.println("등록했습니다.");
     }
 
     private void listProject() {
         System.out.println("번호 프로젝트 기간");
-        for (Project project : this.projectList.toArray()) {
+        for (Object obj : projectList.toArray()) {
+            Project project = (Project) obj;
             System.out.printf("%d %s %s ~ %s\n",
                     project.getNo(), project.getTitle(), project.getStartDate(), project.getEndDate());
         }
@@ -97,7 +98,7 @@ public class ProjectCommand {
 
     private void viewProject() {
         int projectNo = Prompt.inputInt("프로젝트 번호?");
-        Project project = this.projectList.findByNo(projectNo);
+        Project project = projectList.findByNo(projectNo);
         if (project == null) {
             System.out.println("없는 프로젝트입니다.");
             return;
@@ -115,7 +116,7 @@ public class ProjectCommand {
 
     private void updateProject() {
         int projectNo = Prompt.inputInt("프로젝트 번호?");
-        Project project = this.projectList.findByNo(projectNo);
+        Project project = projectList.findByNo(projectNo);
         if (project == null) {
             System.out.println("없는 프로젝트입니다.");
             return;
@@ -135,8 +136,9 @@ public class ProjectCommand {
 
     private void deleteProject() {
         int projectNo = Prompt.inputInt("프로젝트 번호?");
-        Project deletedProject = this.projectList.delete(projectNo);
+        Project deletedProject = projectList.findByNo(projectNo);
         if (deletedProject != null) {
+            projectList.remove(projectList.indexOf(deletedProject));
             System.out.printf("%d번 프로젝트를 삭제 했습니다.\n", deletedProject.getNo());
         } else {
             System.out.println("없는 프로젝트입니다.");

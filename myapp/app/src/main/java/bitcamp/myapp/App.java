@@ -24,14 +24,11 @@ public class App {
 
 
     public static void main(String[] args) {
-
         new App().execute();
-
-
     }
 
     void execute() {
-        printMenu(); // 메서드에 묶인 코드를 실행하는 것을 "메서드를 호출(call)한다"라고 부른다.
+        printMenu();
 
         String command;
         while (true) {

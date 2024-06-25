@@ -1,26 +1,26 @@
 package bitcamp.myapp;
 
-import java.util.Scanner;
-
 public class Practice {
     public static void main(String[] args) {
-        int count = 0;
+        String[] season = {"Spring", "Summer", "Fall", "Winter"};
+
+        System.out.println("season[0] : " + season[0]);
+        System.out.println("season[1] : " + season[1]);
+        System.out.println("season[2] : " + season[2]);
+        System.out.println("season[3] : " + season[3]);
+
+        //인덱스 1번 항목의 값 변경
+        season[1] = "여름";
+        System.out.println("season[1] : " + season[1]);
+        System.out.println(season[1]);
+
+        int[] scores = {83, 90, 87};
         int sum = 0;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("정수를 입력하고 마지막에 -1을 넣으시오");
-
-        int n = scanner.nextInt();
-        while (n != -1) {
-            sum += n;
-            count++;
-
-            n = scanner.nextInt();
+        for (int i = 0; i < 3; i++) {
+            sum += scores[i];
         }
-        if (count == 0) System.out.println("입력된 수가 없습니다");
-        else {
-            System.out.print("정수의 개수는" + count + "개이며");
-            System.out.println("평균은" + (double) sum / count + "입니다.");
-        }
-        scanner.close();
+        System.out.println("총합 : " + sum);
+        double avg = (double) sum / 3;
+        System.out.println("평균 : " + avg);
     }
 }
