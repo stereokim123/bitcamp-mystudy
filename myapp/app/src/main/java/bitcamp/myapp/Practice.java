@@ -1,26 +1,12 @@
 package bitcamp.myapp;
 
+import java.util.Scanner;
+
 public class Practice {
     public static void main(String[] args) {
-        String[] season = {"Spring", "Summer", "Fall", "Winter"};
+        Scanner sc = new Scanner(System.in);
 
-        System.out.println("season[0] : " + season[0]);
-        System.out.println("season[1] : " + season[1]);
-        System.out.println("season[2] : " + season[2]);
-        System.out.println("season[3] : " + season[3]);
+        String line = "-------------------------------------------";
 
-        //인덱스 1번 항목의 값 변경
-        season[1] = "여름";
-        System.out.println("season[1] : " + season[1]);
-        System.out.println(season[1]);
-
-        int[] scores = {83, 90, 87};
-        int sum = 0;
-        for (int i = 0; i < 3; i++) {
-            sum += scores[i];
-        }
-        System.out.println("총합 : " + sum);
-        double avg = (double) sum / 3;
-        System.out.println("평균 : " + avg);
     }
 }
