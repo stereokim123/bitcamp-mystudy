@@ -129,20 +129,58 @@ package bitcamp.myapp.backjun.repetition;
 //
 //}
 
+// 11022번
+//import java.util.Scanner;
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        Scanner sc = new Scanner(System.in);
+//        int N = sc.nextInt();
+//
+//
+//        for (int i = 1; i <= N; i++) {
+//
+//            int A = sc.nextInt();
+//            int B = sc.nextInt();
+//
+//            System.out.println("Case #" + i + ": " + A + " + " + B + " = " + (A + B));
+//
+//        }
+//        sc.close();
+//    }
+//}
+
+// 2483번
+//import java.util.Scanner;
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        Scanner sc = new Scanner(System.in);
+//
+//        int N = sc.nextInt();
+//        String str = "*";
+//        StringBuilder sb = new StringBuilder();
+//        for (int i = 1; i <= N; i++) {
+//            sb.append(str);
+//            System.out.println(sb);
+//        }
+//    }
+//}
+// 2439번
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
         int N = sc.nextInt();
-        int A = sc.nextInt();
-        int B = sc.nextInt();
-
-
+        String str = "*";
+        StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= N; i++) {
-
-            System.out.println("Case #" + i + ": " + A + " + " + B + " = " + (A + B));
-
+            sb.append(str);
+            System.out.printf("%5s\n", sb);
         }
     }
 }
+
