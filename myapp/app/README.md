@@ -1,36 +1,57 @@
-# 33. Apache POI 라이브러리 활용하기 : 데이터를 엑셀 포맷의 파일로 입출력
+# 04. 키보드 입력 다루기
 
 ## 학습목표
 
-- Apache POI 라이브러리를 이용하여 엑셀 포맷의 파일을 다룰 수 있다.
+- 키보드 입력을 다룰 수 있다.
+- 조건문을 사용하여 실행을 분기할 수 있다.
+- 반복문을 사용하여 특정 명령문을 반복해서 실행할 수 있다.
+- Gradle로 run 태스크를 실행할 때 키보드를 표준 입력으로 사용할 수 있게 설정할 수 있다. 
 
-## 요구사항
+## 요구사항 
 
-- 데이터를 엑셀 포맷으로 파일에 저장하고 읽기
+- 사용자로부터 메뉴 번호를 입력 받기
+- 메뉴 번호에 해당하는 메뉴 이름을 출력
+- 종료 메뉴 번호를 입력하면 실행을 종료
 
 ## 실행 결과
 
-- 이전과 같다.
+```
+----------------------------------------------  
+[팀 프로젝트 관리 시스템]  
+
+1. 회원
+2. 팀
+3. 프로젝트
+4. 게시판
+5. 도움말
+6. 종료  
+----------------------------------------------  
+> 1
+회원
+> 3
+프로젝트
+> 9
+메뉴 번호가 옳지 않습니다.
+> 6
+종료합니다.
+```
 
 ## 작업
 
-- Google gson 라이브러리 추가
-  - build.gradle 변경
-- 데이터 로딩 및 저장 코드 변경
-  - loadJson(), saveJson() 메서드 추가
-  - loadData(), saveData() 메서드 변경
-  - loadUsers(), saveUsers() 메서드 삭제
-  - loadProjects(), saveProjects() 메서드 삭제
-  - loadBoards(), saveBoards() 메서드 삭제
-- User, Project, Board 클래스 변경
-  - SequenceNo 인터페이스 정의
-  - User, Project, Board 클래스 SequenceNo 구현
-  - 데이터 로딩 후 일련 식별 번호 초기화: initSeqNo() 메서드 추가
- 
+- 1) 프롬프트를 통해 입력 받는 기능을 구현: App.main()
+  - java.util.Scanner, System.in 사용
+- 2) 반복문을 이용하여 메뉴 입력을 반복해서 처리: App.main()
+  - do ~ while 문 사용
+- 3) 메뉴 번호에 따라 출력 문구를 변경하는 조건을 처리: App.main()
+  - switch 문 사용
+
 ## 소스 파일
 
+- build.gradle
+```
+run {
+    standardInput = System.in // 기본 값은 empty stream 이다.
+}
+```
 - App.java
-- SequenceNo.java 추가
-- Board.java
-- Project.java
-- User.java
+
